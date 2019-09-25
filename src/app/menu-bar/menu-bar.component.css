@@ -1,0 +1,99 @@
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-top: 90px;
+  margin-left: 10px;
+}
+
+.sidenav a {
+  padding: 8px;
+  font-size: 20px;
+  color: #1d1f21;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-container {
+  width: auto;
+  transition: width 5s;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.accordion {
+  background-color: #fff;
+  margin: 5px;
+  cursor: pointer;
+  padding: 8px;
+  width: 180px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.accordion:after {
+  content: "\2228";
+  float: right;
+  margin-left: 5px;
+  transition: transform 1s;
+}
+
+.active:after {
+  content: "\2228";
+  transform: rotate(180deg);
+  max-height: auto;
+}
+
+.panell {
+  background-color: white;
+  max-height: auto;
+  text-align: left;
+  transition: max-height 4s;
+  overflow: hidden;
+}
+
+.dr-el {
+  width: auto;
+  margin-top: 10px;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  height: 90px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+
+  .row.content {
+    height: auto;
+  }
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding-left: 245px;
+}

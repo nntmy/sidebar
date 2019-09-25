@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "my-sidebar": [
+        "dist/my-sidebar"
+      ],
+      "my-sidebar/*": [
+        "dist/my-sidebar/*"
+      ]
+    }
   }
 }

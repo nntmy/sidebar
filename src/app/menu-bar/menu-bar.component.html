@@ -1,0 +1,58 @@
+<nav class="navbar navbar-inverse">
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <p-contextMenu [target]="p" styleClass="menuTop"></p-contextMenu>
+      <p #p>Menu</p>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav" style="display: flex;">
+      <div
+        class="sidenav"
+        style="padding-left: 0;padding-top:0;border: darkgray 1px solid;height: 100%;"
+      >
+        <div *ngFor="let item of array; let i = index">
+          <div style="display: flex; margin-top: 20px;">
+            <div class="band " style="width: 10px;"></div>
+            <div class="iconnav">
+              <a
+                class="{{ item.icon }}"
+                style="font-size: 2em;width: 32px;"
+              ></a>
+            </div>
+            <div *ngIf="item.children?.length == null" [hidden]="!check">
+              <a href="{{ item.data }}">{{ item.label }}</a>
+            </div>
+
+            <div *ngIf="item.children?.length != null" [hidden]="!check">
+              <button class="accordion" (click)="toggleAccordian($event, i)">
+                {{ item.label }}
+              </button>
+
+              <div
+                class="dropdown-container panell "
+                *ngFor="let a of item?.children; let i = index"
+                [hidden]="!item.isActive"
+              >
+                <a
+                  [hidden]="a.children?.length == null"
+                  class="dr-el"
+                  href="#"
+                  >{{ a.label }}</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main" class="col-sm-2">
+    <button style="font-size:30px;cursor:pointer" (click)="check = !check">
+      &#60;
+    </button>
+  </div>
+</div>

@@ -1,72 +1,82 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MenuItem, MessageService } from "primeng/api";
-import { TreeNode } from "primeng/api";
+import { Component, OnInit } from "@angular/core";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from "@angular/animations";
+
+import { MenuService } from "../menu.service";
+
 @Component({
   selector: "app-menu-bar",
   templateUrl: "./menu-bar.component.html",
-  styleUrls: ["./menu-bar.component.css"]
+  styleUrls: ["./menu-bar.component.css"],
+  animations: [
+    trigger("openClose", [
+      // ...
+      state(
+        "open",
+        style({
+          height: "auto"
+        })
+      ),
+      state(
+        "closed",
+        style({
+          height: "0px"
+        })
+      ),
+      transition("open => closed", [animate("5s")]),
+      transition("closed => open", [animate("5s")]),
+      transition("* => closed", [animate("0.5s")]),
+      transition("* => open", [animate("0.5s")]),
+      transition("open <=> closed", [animate("0.5s")]),
+      transition("* => open", [animate("0.5s", style({ opacity: "*" }))]),
+      transition("* => *", [animate("0.5s")])
+    ])
+  ]
 })
 export class MenuBarComponent implements OnInit {
   check: boolean = false;
-
   array: any[];
+  openClose: boolean;
+  num: number;
 
-  constructor() {}
+  constructor(private menu: MenuService) {}
 
   ngOnInit() {
-    this.array = [
-      {
-        label: "test 1",
-        icon: "pi pi-file",
-        data: "#"
-      },
-      {
-        label: "File 1",
-        icon: "pi pi-file",
-        data: "http://www.primefaces.org/primeng",
-        children: [
-          {
-            label: "file 2 ",
-            children: [
-              { label: "User 3", data: "http://www.primefaces.org/primeng" },
-              { label: "Filter 3" }
-            ]
-          },
-          { label: "Open 2" },
-
-          { label: "Quit 2" }
-        ]
-      },
-      {
-        label: "Edit 1",
-        icon: "pi pi-fw pi-pencil",
-        children: [
-          {
-            label: "edit 2",
-            children: [{ label: "User 3" }, { label: "Filter 3" }]
-          },
-          {
-            label: "edit 2",
-            children: [{ label: "User 3" }, { label: "Filter 3" }]
-          },
-          { label: "Refresh 2" }
-        ]
-      }
-    ];
+    this.array = this.menu.getMenu();
   }
-  toggleAccordian(event, index) {
+
+  toggleAccordian(event, i) {
     var element = event.target;
     element.classList.toggle("active");
-    if (this.array[index].isActive) {
-      this.array[index].isActive = false;
+    if (this.array[i].Active == true) {
+      this.array[i].Active = false;
+      this.openClose = false;
+      console.log("Active", this.array[i].Active, "open", this.openClose);
     } else {
-      this.array[index].isActive = true;
+      this.array[i].Active = true;
+      this.openClose = true;
+      console.log("Active", this.array[i].Active, "open", this.openClose);
     }
-    // var panel = element.nextElementSibling;
-    // if (panel.style.maxHeight) {
-    //   panel.style.maxHeight = null;
-    // } else {
-    //   panel.style.maxHeight = panel.scrollHeight + "px";
-    // }
+  }
+
+  openNav(event, isOpen: boolean) {
+    var element = event.target;
+    element.classList.toggle("btn_active");
+    if (isOpen == true) {
+      document.getElementById("mySidenav").style.width = "200px";
+    } else if (isOpen == false) {
+      document.getElementById("mySidenav").style.width = "0px";
+    }
+  }
+
+  onAnimationEvent() {
+    if (!this.openClose) {
+      return;
+    }
   }
 }

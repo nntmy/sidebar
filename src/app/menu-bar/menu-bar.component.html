@@ -7,41 +7,50 @@
   </div>
 </nav>
 
-<div class="container-fluid text-center">
-  <div class="row content">
-    <div class="col-sm-2 sidenav" style="display: flex;">
-      <div
-        class="sidenav"
-        style="padding-left: 0;padding-top:0;border: darkgray 1px solid;height: 100%;"
-      >
-        <div *ngFor="let item of array; let i = index">
-          <div style="display: flex; margin-top: 20px;">
-            <div class="band " style="width: 10px;"></div>
-            <div class="iconnav">
-              <a
-                class="{{ item.icon }}"
-                style="font-size: 2em;width: 32px;"
-              ></a>
-            </div>
-            <div *ngIf="item.children?.length == null" [hidden]="!check">
-              <a href="{{ item.data }}">{{ item.label }}</a>
-            </div>
+<div class="container-fluid">
+  <div class="col-sm-2 " style="display: flex;">
+    <div class="sidenav">
+      <div *ngFor="let item of array; let i = index">
+        <div style="display: flex; margin-top: 20px;">
+          <div class="iconnav">
+            <a class="{{ item.icon }}" style="font-size: 2em;"></a>
+          </div>
+          <div
+            *ngIf="item.children?.length == null"
+            class="label-icon mySidenav"
+          >
+            <a
+              style="width: 180px;font-weight: bold;margin: 5px;"
+              routerLink="{{ item.path }}"
+              >{{ item.name }}</a
+            >
+          </div>
 
-            <div *ngIf="item.children?.length != null" [hidden]="!check">
-              <button class="accordion" (click)="toggleAccordian($event, i)">
-                {{ item.label }}
-              </button>
-
+          <div
+            *ngIf="item.children?.length != null"
+            id="mySidenav"
+            class="label-icon"
+          >
+            <p
+              class="accordion pi"
+              (click)="toggleAccordian($event, i)"
+              style="width: 180px;font-weight: bold;margin: 5px;"
+              routerLink="{{ item.path }}"
+            >
+              {{ item.name }}
+            </p>
+            <div>
               <div
-                class="dropdown-container panell "
-                *ngFor="let a of item?.children; let i = index"
-                [hidden]="!item.isActive"
+                *ngFor="let a of item?.children"
+                [hidden]="!item.Active"
+                [@openClose]="item.Active ? 'open' : 'closed'"
+                (@openClose.start)="onAnimationEvent($event)"
+                (@openClose.done)="onAnimationEvent($event)"
               >
                 <a
-                  [hidden]="a.children?.length == null"
-                  class="dr-el"
-                  href="#"
-                  >{{ a.label }}</a
+                  class="dr-el panell dropdown_container"
+                  routerLink="/{{ a.path }}"
+                  >{{ a.name }}</a
                 >
               </div>
             </div>
@@ -49,10 +58,13 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="main" class="col-sm-2">
-    <button style="font-size:30px;cursor:pointer" (click)="check = !check">
-      &#60;
-    </button>
+
+    <button
+      (click)="openNav($event, (check = !check))"
+      class="btn_openNav pi col-sm-2"
+    ></button>
+
+    <!-- <app-breadcrumb></app-breadcrumb> -->
+    <router-outlet></router-outlet>
   </div>
 </div>

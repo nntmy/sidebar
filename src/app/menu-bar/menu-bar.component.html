@@ -7,64 +7,54 @@
   </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="col-sm-2 " style="display: flex;">
-    <div class="sidenav">
-      <div *ngFor="let item of array; let i = index">
-        <div style="display: flex; margin-top: 20px;">
-          <div class="iconnav">
-            <a class="{{ item.icon }}" style="font-size: 2em;"></a>
-          </div>
-          <div
+<div class="col-sm-2 " style="display: flex;">
+  <div class="sidenav">
+    <div class="iconnav " *ngFor="let item of array; let i = index">
+      <!------------------------------------icon menu----- ------------------------------------>
+      <a
+        class="{{ item.icon }} "
+        style="font-size: 24px; margin: 0 0 10px 0; "
+        [ngClass]="isOpen ? 'noneBorder' : 'border'"
+      >
+        <!------------------------------------item menu----------------------------------------->
+        <div [ngStyle]="mySidenav()">
+          <p
             *ngIf="item.children?.length == null"
-            class="label-icon mySidenav"
+            class="accordion-null font-weight-normal"
+            (click)="toggleAccordian($event, i)"
+            routerLink="{{ item.path }}"
           >
-            <a
-              style="width: 180px;font-weight: bold;margin: 5px;"
-              routerLink="{{ item.path }}"
-              >{{ item.name }}</a
-            >
-          </div>
-
-          <div
+            {{ item.name }}
+          </p>
+          <p
             *ngIf="item.children?.length != null"
-            id="mySidenav"
-            class="label-icon"
+            class="accordion "
+            (click)="toggleAccordian($event, i)"
+            routerLink="{{ item.path }}"
           >
-            <p
-              class="accordion pi"
-              (click)="toggleAccordian($event, i)"
-              style="width: 180px;font-weight: bold;margin: 5px;"
-              routerLink="{{ item.path }}"
-            >
-              {{ item.name }}
-            </p>
-            <div>
-              <div
-                *ngFor="let a of item?.children"
-                [hidden]="!item.Active"
-                [@openClose]="item.Active ? 'open' : 'closed'"
-                (@openClose.start)="onAnimationEvent($event)"
-                (@openClose.done)="onAnimationEvent($event)"
-              >
-                <a
-                  class="dr-el panell dropdown_container"
-                  routerLink="/{{ a.path }}"
-                  >{{ a.name }}</a
-                >
-              </div>
-            </div>
-          </div>
+            {{ item.name }}
+          </p>
         </div>
+      </a>
+      <!------------------------------------sub menu----------------------------------------->
+      <div
+        id="mySidenav1"
+        class="dropdown_container  border"
+        [@openClose]="item.Active ? 'open' : 'closed'"
+        [@btnOpen]="isOpen ? 'open' : 'closed'"
+        *ngFor="let a of item?.children; let ii = index"
+      >
+        <a style="margin: 10px 0 5px 0" routerLink="/{{ a.path }}">
+          {{ a.name }}
+        </a>
       </div>
     </div>
-
-    <button
-      (click)="openNav($event, (check = !check))"
-      class="btn_openNav pi col-sm-2"
-    ></button>
-
-    <!-- <app-breadcrumb></app-breadcrumb> -->
-    <router-outlet></router-outlet>
   </div>
+
+  <button
+    (click)="openNav($event, (isOpen = !isOpen))"
+    class="btn_openNav pi col-sm-2"
+  ></button>
+  <app-breadcrumb></app-breadcrumb>
+  <router-outlet></router-outlet>
 </div>

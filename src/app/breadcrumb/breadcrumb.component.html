@@ -1,14 +1,12 @@
-<div class="col">
+<!-- <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li
-      class="breadcrumb-item"
-      *ngFor="let item of breadcrumbList; let i = index"
-      [class.active]="i === breadcrumbList.length - 1"
-    >
-      <a [routerLink]="item?.path" *ngIf="i !== breadcrumbList.length - 1">
-        {{ item?.name }}
-      </a>
-      <span *ngIf="i === breadcrumbList.length - 1">{{ item?.name }}</span>
+    <li *ngFor="let breadcrumb of breadcrumbs">
+      <a
+        [routerLink]="[breadcrumb.url, breadcrumb.params]"
+        routerLinkActive="active"
+        >{{ breadcrumb.label }}</a
+      >
     </li>
   </ol>
-</div>
+</nav> -->
+<p-breadcrumb [model]="breadcrumbs"></p-breadcrumb>

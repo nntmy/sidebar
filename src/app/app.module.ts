@@ -14,6 +14,7 @@ import { MenuModule } from "primeng/menu";
 import { PanelMenuModule } from "primeng/panelmenu";
 import { ContextMenuModule } from "primeng/contextmenu";
 import { ToggleButtonModule } from "primeng/togglebutton";
+import { BreadcrumbModule } from "primeng/breadcrumb";
 
 //component
 import { AppComponent } from "./app.component";
@@ -46,24 +47,24 @@ import { Test3Component } from "./test/test2/test3/test3.component";
     PanelMenuModule,
     ContextMenuModule,
     ToggleButtonModule,
-
+    BreadcrumbModule,
     //material
 
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
     //router
-    RouterModule.forRoot([
-      { path: "home", component: HomeComponent },
-      {
-        path: "test",
-        component: TestComponent,
-        children: [
-          { path: "test1", component: Test1Component },
-          { path: "test2", component: Test2Component },
-          { path: "test3", component: Test3Component }
-        ]
-      },
-      { path: "", redirectTo: "home", pathMatch: "full" }
-    ])
+    // RouterModule.forRoot([
+    //   { path: "home", component: HomeComponent },
+    //   {
+    //     path: "test",
+    //     component: TestComponent,
+    //     children: [
+    //       { path: "test1", component: Test1Component },
+    //       { path: "test2", component: Test2Component },
+    //       { path: "test3", component: Test3Component }
+    //     ]
+    //   },
+    //   { path: "", redirectTo: "home", pathMatch: "full" }
+    // ])
   ],
   providers: [MenuService],
   bootstrap: [AppComponent]

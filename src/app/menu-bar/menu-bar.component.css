@@ -9,48 +9,53 @@
   background-color: #fff;
   overflow-x: hidden;
   margin-top: 90px;
-  margin-left: 10px;
+
   border: #d6d3d3 1px solid;
 }
 
 .sidenav a {
-  padding: 8px;
+  padding: 8px 15px 8px 15px;
   font-size: 18px;
-  color: #1d1f21;
-  display: block;
+  color: #444444;
+  display: inline-flex;
   text-decoration: none;
 }
-
-.mySidenav {
-  width: 0px;
+.iconnav {
+  margin-top: 30px;
 }
 /*------------------------- dropdown menu ------------------*/
 .dropdown_container {
-  width: auto;
-  transition: max-height 0.5s;
-}
-.active:after {
-  transform: rotate(180deg);
-}
-
-.panell {
   background-color: white;
   text-align: left;
-  transition: max-height 2s ease-out;
+  overflow: hidden;
+  width: auto;
+  padding-left: 35px;
+  color: #444444;
 }
 
 .accordion {
   background-color: #fff;
-  margin: 5px;
   cursor: pointer;
-  padding: 8px;
-  width: 180px;
   border: none;
   text-align: left;
   outline: none;
   font-size: 18px;
-
   font-weight: bold;
+  width: 230px;
+  margin: 3px 5px 5px 15px;
+  color: #444444;
+}
+.accordion-null {
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  font-weight: bold;
+  width: 230px;
+  margin: 3px 5px 5px 15px;
+  color: #444444;
 }
 .accordion:after {
   content: "\e902";
@@ -58,13 +63,13 @@
   margin-left: 5px;
   transition: transform 0.5s;
 }
-:host::ng-deep.pi {
-  font-family: "primeicons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+.active:after {
+  transform: rotate(180deg);
 }
 
-.dr-el {
-  width: 180px;
-  margin-top: 10px;
+:host::ng-deep.pi {
+  font-family: "primeicons", Arial, sans-serif;
 }
 
 .navbar {
@@ -73,34 +78,47 @@
   height: 90px;
 }
 
-.iconnav {
-  width: auto;
-  height: auto;
-}
-.label-icon {
-  width: 0;
-  transition: 0.5s;
-}
 /*---------------------button---------------------------*/
 .btn_openNav {
   cursor: pointer;
-  height: 80px;
+  height: 70px;
   width: auto;
   font-size: 15px;
   font-weight: bold;
   background-color: #fff;
   border: #d6d3d3 1px solid;
-  margin-left: 24px;
-  padding: 5px;
+  margin-left: 44px;
+  padding: 3px;
   transition: margin-left 0.5s;
 }
 .btn_openNav::before {
   content: "\e901";
-
   transform: rotate(180deg);
 }
 .btn_active {
-  margin-left: 226px;
+  margin-left: 290px;
   transition: margin-left 0.5s;
   transform: rotate(180deg);
+}
+
+#mySidenav {
+  transition: 0.5s;
+  width: 0;
+}
+/*--------------------- hover border --------------------------------*/
+.border {
+  border-left: 5px solid white;
+}
+.border:hover {
+  border-left: 5px solid #fe008f;
+  background-color: rgba(236, 234, 234, 0.719);
+  font-weight: bold;
+}
+.noneBorder {
+  border-left: none;
+}
+.activeIcon {
+  height: auto;
+  width: 309px;
+  transition: 250ms;
 }

@@ -8,12 +8,17 @@ import { Test2Component } from "./test/test2/test2.component";
 import { Test3Component } from "./test/test2/test3/test3.component";
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent },
+  { path: "home", component: HomeComponent, data: { breadcrumb: "Home" } },
   {
     path: "test",
     component: TestComponent,
+    data: { breadcrumb: "Test" },
     children: [
-      { path: "test1", component: Test1Component },
+      {
+        path: "test1",
+        component: Test1Component,
+        data: { breadcrumb: "Test1" }
+      },
       { path: "test2", component: Test2Component },
       { path: "test2/test3", component: Test3Component }
     ]

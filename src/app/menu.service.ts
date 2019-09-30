@@ -48,15 +48,21 @@ export class MenuService {
         ]
       },
       {
-        name: "Test",
-        icon: "pi pi-file",
-        path: "./test",
+        name: "Test ",
+        icon: "pi pi-briefcase",
+        path: "/test",
         isActive: false,
         children: [
           {
             name: "Test 1 ",
             icon: "",
             path: "test/test1",
+            isActive: false
+          },
+          {
+            name: "Test 2",
+            icon: "",
+            path: "test/test2",
             isActive: false
           },
           {

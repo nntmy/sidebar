@@ -12,49 +12,46 @@
     <div class="sidenav">
       <div *ngFor="let item of array; let i = index">
         <div style="display: flex; margin-top: 20px;">
+          <!------------------------------------icon menu----------------------------------------->
           <div class="iconnav">
             <a class="{{ item.icon }}" style="font-size: 2em;"></a>
           </div>
-          <div
-            *ngIf="item.children?.length == null"
-            class="label-icon mySidenav"
-          >
-            <a
-              style="width: 180px;font-weight: bold;margin: 5px;"
-              routerLink="{{ item.path }}"
-              >{{ item.name }}</a
-            >
-          </div>
 
-          <div
-            *ngIf="item.children?.length != null"
-            id="mySidenav"
-            class="label-icon"
-          >
+          <!------------------------------------item menu----------------------------------------->
+          <div id="mySidenav">
             <p
-              class="accordion pi"
-              (click)="toggleAccordian($event, i)"
-              style="width: 180px;font-weight: bold;margin: 5px;"
+              *ngIf="item.children?.length == null"
+              class="accordion-null"
               routerLink="{{ item.path }}"
             >
               {{ item.name }}
             </p>
-            <div>
-              <div
-                *ngFor="let a of item?.children"
-                [hidden]="!item.Active"
-                [@openClose]="item.Active ? 'open' : 'closed'"
-                (@openClose.start)="onAnimationEvent($event)"
-                (@openClose.done)="onAnimationEvent($event)"
-              >
-                <a
-                  class="dr-el panell dropdown_container"
-                  routerLink="/{{ a.path }}"
-                  >{{ a.name }}</a
-                >
-              </div>
-            </div>
+            <p
+              *ngIf="item.children?.length != null"
+              class="accordion pi"
+              (click)="toggleAccordian($event, i)"
+              routerLink="{{ item.path }}"
+            >
+              {{ item.name }}
+            </p>
           </div>
+        </div>
+
+        <!------------------------------------sub menu----------------------------------------->
+        <div
+          *ngIf="item.children?.length != null"
+          id="mySidenav1"
+          class="dropdown_container "
+          [@openClose]="item.Active ? 'open' : 'closed'"
+          [@btnOpen]="check ? 'open' : 'closed'"
+        >
+          <a
+            *ngFor="let a of item?.children"
+            class="dr-el  "
+            routerLink="/{{ a.path }}"
+          >
+            {{ a.name }}
+          </a>
         </div>
       </div>
     </div>

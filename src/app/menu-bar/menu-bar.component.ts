@@ -19,22 +19,38 @@ import { MenuService } from "../menu.service";
       state(
         "open",
         style({
-          height: "auto"
+          height: "*"
         })
       ),
       state(
         "closed",
         style({
-          height: "0px"
+          height: "0px",
+          width: 0
         })
       ),
-      transition("open => closed", [animate("5s")]),
-      transition("closed => open", [animate("5s")]),
-      transition("* => closed", [animate("0.5s")]),
-      transition("* => open", [animate("0.5s")]),
-      transition("open <=> closed", [animate("0.5s")]),
-      transition("* => open", [animate("0.5s", style({ opacity: "*" }))]),
-      transition("* => *", [animate("0.5s")])
+      transition("open => closed", [animate("0.3s")]),
+      transition("closed => open", [animate("0.3s")])
+    ]),
+    trigger("btnOpen", [
+      // ...
+      state(
+        "open",
+        style({
+          opacity: 1,
+          width: "*"
+        })
+      ),
+      state(
+        "closed",
+        style({
+          opacity: 0,
+          width: 0,
+          display: "none"
+        })
+      ),
+      transition("open => closed", [animate("0.3s")]),
+      transition("closed => open", [animate("0.3s")])
     ])
   ]
 })
@@ -42,7 +58,6 @@ export class MenuBarComponent implements OnInit {
   check: boolean = false;
   array: any[];
   openClose: boolean;
-  num: number;
 
   constructor(private menu: MenuService) {}
 
@@ -53,30 +68,22 @@ export class MenuBarComponent implements OnInit {
   toggleAccordian(event, i) {
     var element = event.target;
     element.classList.toggle("active");
+
     if (this.array[i].Active == true) {
       this.array[i].Active = false;
-      this.openClose = false;
-      console.log("Active", this.array[i].Active, "open", this.openClose);
     } else {
       this.array[i].Active = true;
-      this.openClose = true;
-      console.log("Active", this.array[i].Active, "open", this.openClose);
     }
   }
 
-  openNav(event, isOpen: boolean) {
+  openNav(event, check: boolean) {
     var element = event.target;
     element.classList.toggle("btn_active");
-    if (isOpen == true) {
-      document.getElementById("mySidenav").style.width = "200px";
-    } else if (isOpen == false) {
+    console.log("kkkkkkkkkkkkkk", check);
+    if (check == true) {
+      document.getElementById("mySidenav").style.width = "190px";
+    } else if (check == false) {
       document.getElementById("mySidenav").style.width = "0px";
-    }
-  }
-
-  onAnimationEvent() {
-    if (!this.openClose) {
-      return;
     }
   }
 }

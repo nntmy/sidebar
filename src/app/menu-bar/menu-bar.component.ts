@@ -7,60 +7,17 @@ import { transAnimation } from "../animation";
   selector: "app-menu-bar",
   templateUrl: "./menu-bar.component.html",
   styleUrls: ["./menu-bar.component.css"],
-<<<<<<< HEAD
+
   animations: [transAnimation]
-=======
-  animations: [
-    trigger("openClose", [
-      // ...
-      state(
-        "open",
-        style({
-          height: "*"
-        })
-      ),
-      state(
-        "closed",
-        style({
-          height: "0px",
-          width: 0
-        })
-      ),
-      transition("open => closed", [animate("0.3s")]),
-      transition("closed => open", [animate("0.3s")])
-    ]),
-    trigger("btnOpen", [
-      // ...
-      state(
-        "open",
-        style({
-          opacity: 1,
-          width: "*"
-        })
-      ),
-      state(
-        "closed",
-        style({
-          opacity: 0,
-          width: 0,
-          display: "none"
-        })
-      ),
-      transition("open => closed", [animate("0.3s")]),
-      transition("closed => open", [animate("0.3s")])
-    ])
-  ]
->>>>>>> 511da5451721eaf1635c22a0a024849db355a197
 })
 export class MenuBarComponent implements OnInit {
   array: any[];
-<<<<<<< HEAD
+
   breadItem: string[];
 
   isOpen: boolean = false;
-=======
+
   openClose: boolean;
->>>>>>> 511da5451721eaf1635c22a0a024849db355a197
 
   constructor(private menu: MenuService) {}
 
@@ -79,7 +36,6 @@ export class MenuBarComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
   openNav(event) {
     var element = event.target;
     element.classList.toggle("btn_active");
@@ -103,16 +59,4 @@ export class MenuBarComponent implements OnInit {
       "border-left": "4px solid #fff"
     };
   }
-=======
-  openNav(event, check: boolean) {
-    var element = event.target;
-    element.classList.toggle("btn_active");
-    console.log("kkkkkkkkkkkkkk", check);
-    if (check == true) {
-      document.getElementById("mySidenav").style.width = "190px";
-    } else if (check == false) {
-      document.getElementById("mySidenav").style.width = "0px";
-    }
-  }
->>>>>>> 511da5451721eaf1635c22a0a024849db355a197
 }

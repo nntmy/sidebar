@@ -7,7 +7,6 @@
   </div>
 </nav>
 
-<<<<<<< HEAD
 <div class="col-sm-2 " style="display: flex;">
   <div class="sidenav">
     <div class="iconnav " *ngFor="let item of array; let i = index">
@@ -48,54 +47,6 @@
         <a style="margin: 10px 0 5px 0" routerLink="/{{ a.path }}">
           {{ a.name }}
         </a>
-=======
-<div class="container-fluid">
-  <div class="col-sm-2 " style="display: flex;">
-    <div class="sidenav">
-      <div *ngFor="let item of array; let i = index">
-        <div style="display: flex; margin-top: 20px;">
-          <!------------------------------------icon menu----------------------------------------->
-          <div class="iconnav">
-            <a class="{{ item.icon }}" style="font-size: 2em;"></a>
-          </div>
-
-          <!------------------------------------item menu----------------------------------------->
-          <div id="mySidenav">
-            <p
-              *ngIf="item.children?.length == null"
-              class="accordion-null"
-              routerLink="{{ item.path }}"
-            >
-              {{ item.name }}
-            </p>
-            <p
-              *ngIf="item.children?.length != null"
-              class="accordion pi"
-              (click)="toggleAccordian($event, i)"
-              routerLink="{{ item.path }}"
-            >
-              {{ item.name }}
-            </p>
-          </div>
-        </div>
-
-        <!------------------------------------sub menu----------------------------------------->
-        <div
-          *ngIf="item.children?.length != null"
-          id="mySidenav1"
-          class="dropdown_container "
-          [@openClose]="item.Active ? 'open' : 'closed'"
-          [@btnOpen]="check ? 'open' : 'closed'"
-        >
-          <a
-            *ngFor="let a of item?.children"
-            class="dr-el  "
-            routerLink="/{{ a.path }}"
-          >
-            {{ a.name }}
-          </a>
-        </div>
->>>>>>> 511da5451721eaf1635c22a0a024849db355a197
       </div>
     </div>
   </div>

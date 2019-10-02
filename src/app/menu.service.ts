@@ -55,9 +55,15 @@ export class MenuService {
         ]
       },
       {
+<<<<<<< HEAD
         name: "Troubleshooting",
         icon: "pi pi-users",
         path: "/home",
+=======
+        name: "Test ",
+        icon: "pi pi-briefcase",
+        path: "/test",
+>>>>>>> 511da5451721eaf1635c22a0a024849db355a197
         isActive: false,
         children: [
           {
@@ -69,6 +75,7 @@ export class MenuService {
           {
             name: "Device list",
             icon: "",
+<<<<<<< HEAD
             path: "",
             isActive: false
           }
@@ -111,6 +118,24 @@ export class MenuService {
             icon: "",
             path: "",
             isActive: false
+=======
+            path: "test/test2",
+            isActive: false
+          },
+          {
+            name: "Test 2",
+            icon: "",
+            path: "test/test2",
+            isActive: false,
+            children: [
+              {
+                name: "Test 3",
+                icon: "pi pi-pencil",
+                path: "test2/test3",
+                isActive: false
+              }
+            ]
+>>>>>>> 511da5451721eaf1635c22a0a024849db355a197
           }
         ]
       }

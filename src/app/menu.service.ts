@@ -21,13 +21,13 @@ export class MenuService {
         isActive: false,
         children: [
           {
-            name: "Collection ",
+            name: "Collection 1",
             icon: "",
             path: "test/test1",
             isActive: false
           },
           {
-            name: "Device list",
+            name: "Device list 1",
             icon: "",
             path: "test/test2",
             isActive: false
@@ -41,13 +41,13 @@ export class MenuService {
         isActive: false,
         children: [
           {
-            name: "Collection ",
+            name: "Collection 2 ",
             icon: "",
             path: "",
             isActive: false
           },
           {
-            name: "Device list",
+            name: "Device list 2",
             icon: "",
             path: "",
             isActive: false
@@ -62,13 +62,13 @@ export class MenuService {
         isActive: false,
         children: [
           {
-            name: "Collection ",
+            name: "Collection 3",
             icon: "",
             path: "",
             isActive: false
           },
           {
-            name: "Device list",
+            name: "Device list 3",
             icon: "",
             path: "",
             isActive: false
@@ -82,13 +82,13 @@ export class MenuService {
         isActive: false,
         children: [
           {
-            name: "Collection ",
+            name: "Collection 4 ",
             icon: "",
             path: "",
             isActive: false
           },
           {
-            name: "Device list",
+            name: "Device list 4",
             icon: "",
             path: "",
             isActive: false
@@ -102,13 +102,13 @@ export class MenuService {
         isActive: false,
         children: [
           {
-            name: "Collection ",
+            name: "Collection 5",
             icon: "",
             path: "",
             isActive: false
           },
           {
-            name: "Device list",
+            name: "Device list 5",
             icon: "",
             path: "",
             isActive: false

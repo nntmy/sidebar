@@ -1,6 +1,6 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse ">
   <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav">
+    <ul class="col-sm-12">
       <p-contextMenu [target]="p" styleClass="menuTop"></p-contextMenu>
       <p #p>Menu</p>
     </ul>
@@ -9,27 +9,29 @@
 
 <div class="col-sm-2 " style="display: flex;">
   <div class="sidenav">
-    <div class="iconnav " *ngFor="let item of array; let i = index">
+    <div class="iconnav " *ngFor="let item of arrayMenu; let i = index">
       <!------------------------------------icon menu----- ------------------------------------>
       <a
         class="{{ item.icon }} "
         style="font-size: 24px; margin: 0 0 10px 0; "
         [ngClass]="isOpen ? 'noneBorder' : 'border'"
+        [ngStyle]="item.isActive ? isActiveBorder() : ''"
       >
         <!------------------------------------item menu----------------------------------------->
-        <div [ngStyle]="mySidenav()">
+        <div
+          [ngStyle]="mySidenav()"
+          (click)="toggleAccordian($event, i); borderItem(item)"
+        >
           <p
-            *ngIf="item.children?.length == null"
-            class="accordion-null font-weight-normal"
-            (click)="toggleAccordian($event, i)"
+            *ngIf="item.children?.length == 0"
+            class="accordion-null "
             routerLink="{{ item.path }}"
           >
             {{ item.name }}
           </p>
           <p
-            *ngIf="item.children?.length != null"
+            *ngIf="item.children?.length != 0"
             class="accordion "
-            (click)="toggleAccordian($event, i)"
             routerLink="{{ item.path }}"
           >
             {{ item.name }}
@@ -38,22 +40,25 @@
       </a>
       <!------------------------------------sub menu----------------------------------------->
       <div
-        id="mySidenav1"
-        class="dropdown_container  border"
+        *ngFor="let chil of item?.children"
+        class="dropdown_container border "
         [@openClose]="item.Active ? 'open' : 'closed'"
         [@btnOpen]="isOpen ? 'open' : 'closed'"
-        *ngFor="let a of item?.children; let ii = index"
+        (click)="borderChildren(chil)"
+        [ngStyle]="chil.isActive ? isActiveBorder() : ''"
       >
-        <a style="margin: 10px 0 5px 0" routerLink="/{{ a.path }}">
-          {{ a.name }}
+        <a
+          style="margin: 10px 0 5px 0; padding: 1px 15px "
+          routerLink="/{{ chil.path }}"
+        >
+          {{ chil.name }}
         </a>
       </div>
     </div>
   </div>
-
   <button
-    (click)="openNav($event, (isOpen = !isOpen))"
-    class="btn_openNav pi col-sm-2"
+    (click)="toggleOpenNav($event, (isOpen = !isOpen))"
+    class="btn_openNav pi "
   ></button>
   <app-breadcrumb></app-breadcrumb>
   <router-outlet></router-outlet>

@@ -12,13 +12,14 @@ export const transAnimation = [
     state(
       "open",
       style({
-        height: "*"
+        height: "*",
+        marginBottom: "10px"
       })
     ),
     state(
       "closed",
       style({
-        height: "0px",
+        height: "0",
         width: 0
       })
     ),
@@ -37,11 +38,12 @@ export const transAnimation = [
       "closed",
       style({
         width: "0",
+
         display: "none"
       })
     ),
 
-    transition("open => closed", [animate("250ms")]),
+    transition("open => closed", [animate("200ms")]),
     transition("closed => open", [animate("250ms")])
   ])
 ];

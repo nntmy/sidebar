@@ -11,36 +11,75 @@ import { transAnimation } from "../animation";
   animations: [transAnimation]
 })
 export class MenuBarComponent implements OnInit {
-  array: any[];
-
+  arrayMenu: any[];
   breadItem: string[];
 
   isOpen: boolean = false;
 
-  openClose: boolean;
-
   constructor(private menu: MenuService) {}
 
   ngOnInit() {
-    this.array = this.menu.getMenu();
+    this.arrayMenu = this.menu.getMenu();
   }
 
+  //toggle for item parent
   toggleAccordian(event, i) {
     var element = event.target;
     element.classList.toggle("active");
 
-    if (this.array[i].Active == true) {
-      this.array[i].Active = false;
+    if (this.arrayMenu[i].Active == true) {
+      this.arrayMenu[i].Active = false;
     } else {
-      this.array[i].Active = true;
+      this.arrayMenu[i].Active = true;
     }
   }
 
-  openNav(event) {
-    var element = event.target;
-    element.classList.toggle("btn_active");
+  //set isActive for children
+  borderChildren(chil) {
+    this.arrayMenu = this.arrayMenu.map(i => {
+      i.isActive = false;
+      for (let f = 0; f < i.children.length; f++) {
+        if (i.children[f].name == chil.name) {
+          i.children[f].isActive = true;
+        } else {
+          i.children[f].isActive = false;
+        }
+      }
+
+      return i;
+    });
   }
 
+  //set isActive for parent
+  borderItem(item) {
+    this.arrayMenu = this.arrayMenu.map(i => {
+      if (i.name == item.name && (i.isActive == true || i.isActive == false)) {
+        i.isActive = true;
+        for (let f = 0; f < i.children.length; f++) {
+          i.children[f].isActive = false;
+        }
+      } else {
+        i.isActive = false;
+        for (let f = 0; f < i.children.length; f++) {
+          i.children[f].isActive = false;
+        }
+      }
+      return i;
+    });
+  }
+
+  // toggle active button
+  toggleOpenNav(event) {
+    var element = event.target;
+    element.classList.toggle("btn_active");
+
+    this.arrayMenu = this.arrayMenu.map(i => {
+      i.isActive = false;
+      return i;
+    });
+  }
+
+  //change sidebar width
   mySidenav() {
     return {
       width: this.isOpen ? "250px" : "0px",
@@ -48,9 +87,10 @@ export class MenuBarComponent implements OnInit {
     };
   }
 
+  //change border left of item
   isActiveBorder() {
     return {
-      "border-left": "4px solid #ef41ad"
+      "border-left": "4px solid #fe008f"
     };
   }
 

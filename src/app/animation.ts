@@ -20,7 +20,7 @@ export const transAnimation = [
       "closed",
       style({
         height: "0",
-        width: 0
+        width: "0"
       })
     ),
     transition("open => closed", [animate("0.3s")]),
@@ -38,7 +38,6 @@ export const transAnimation = [
       "closed",
       style({
         width: "0",
-
         display: "none"
       })
     ),

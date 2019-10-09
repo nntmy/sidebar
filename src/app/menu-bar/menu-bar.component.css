@@ -30,10 +30,11 @@
   text-align: left;
   overflow: hidden;
   width: auto;
-  padding-left: 35px;
+  padding-left: 13%;
   color: #444444;
   width: auto;
 }
+
 .active:after {
   transform: rotate(180deg);
 }

@@ -16,11 +16,12 @@
         style="font-size: 24px; margin: 0 0 10px 0; "
         [ngClass]="isOpen ? 'noneBorder' : 'border'"
         [ngStyle]="item.isActive ? isActiveBorder() : ''"
+        (click)="isActiveItem(item)"
       >
         <!------------------------------------item menu----------------------------------------->
         <div
           [ngStyle]="mySidenav()"
-          (click)="toggleAccordian($event, i); borderItem(item)"
+          (click)="toggleAccordian($event, i); isActiveItem(item)"
         >
           <p
             *ngIf="item.children?.length == 0"
@@ -42,9 +43,9 @@
       <div
         *ngFor="let chil of item?.children"
         class="dropdown_container border "
-        [@openClose]="item.Active ? 'open' : 'closed'"
         [@btnOpen]="isOpen ? 'open' : 'closed'"
-        (click)="borderChildren(chil)"
+        [@openClose]="item.Active ? 'open' : 'closed'"
+        (click)="isActiveChildren(chil)"
         [ngStyle]="chil.isActive ? isActiveBorder() : ''"
       >
         <a

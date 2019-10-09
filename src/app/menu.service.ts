@@ -31,6 +31,18 @@ export class MenuService {
             icon: "",
             path: "test/test2",
             isActive: false
+          },
+          {
+            name: "Collectionn 1",
+            icon: "",
+            path: "test/test1",
+            isActive: false
+          },
+          {
+            name: "Device listt 1",
+            icon: "",
+            path: "test/test2",
+            isActive: false
           }
         ]
       },
